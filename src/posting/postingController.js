@@ -37,8 +37,19 @@ async function deletePosting(req, res) {
   }
 }
 
+async function readPosting(req, res) {
+  try {
+    const data = await postingService.readPosting();
+    return res.status(StatusCodes.OK).send({ data });
+  } catch (err) {
+    console.log(err);
+    return res.status(err.statusCode || 500).json({ message: err.message });
+  }
+}
+
 module.exports = {
   createPosting,
   updatePosting,
   deletePosting,
+  readPosting,
 };

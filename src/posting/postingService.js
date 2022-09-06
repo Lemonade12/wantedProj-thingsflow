@@ -48,8 +48,14 @@ async function deletePosting(postingId, password) {
   }
 }
 
+async function readPosting() {
+  const data = await postingRepo.readPosting();
+  return data;
+}
+
 module.exports = {
   createPosting,
   updatePosting,
   deletePosting,
+  readPosting,
 };

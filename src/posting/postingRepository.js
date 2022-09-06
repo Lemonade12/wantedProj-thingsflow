@@ -26,4 +26,12 @@ async function deletePosting(postingId) {
   });
 }
 
-module.exports = { createPosting, readPostingById, updatePosting, deletePosting };
+async function readPosting(limit = 20) {
+  const data = await posting.findAll({
+    attributes: ["id", "title", "content", "createdAt"],
+    order: [["createdAt", "DESC"]],
+  });
+  return data;
+}
+
+module.exports = { createPosting, readPostingById, updatePosting, deletePosting, readPosting };
