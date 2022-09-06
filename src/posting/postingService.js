@@ -48,8 +48,8 @@ async function deletePosting(postingId, password) {
   }
 }
 
-async function readPosting() {
-  const data = await postingRepo.readPosting();
+async function readPosting(page) {
+  const data = await postingRepo.readPosting(page);
   return data;
 }
 

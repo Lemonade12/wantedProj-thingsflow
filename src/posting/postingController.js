@@ -39,7 +39,8 @@ async function deletePosting(req, res) {
 
 async function readPosting(req, res) {
   try {
-    const data = await postingService.readPosting();
+    const page = req.body.page;
+    const data = await postingService.readPosting(page);
     return res.status(StatusCodes.OK).send({ data });
   } catch (err) {
     console.log(err);

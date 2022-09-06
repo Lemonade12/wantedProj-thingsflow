@@ -26,10 +26,13 @@ async function deletePosting(postingId) {
   });
 }
 
-async function readPosting(limit = 20) {
+async function readPosting(page) {
+  const offset = (page - 1) * 20;
   const data = await posting.findAll({
     attributes: ["id", "title", "content", "createdAt"],
     order: [["createdAt", "DESC"]],
+    offset: offset,
+    limit: 20,
   });
   return data;
 }
