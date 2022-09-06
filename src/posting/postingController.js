@@ -25,7 +25,20 @@ async function updatePosting(req, res) {
   }
 }
 
+async function deletePosting(req, res) {
+  try {
+    const postingId = req.params.id;
+    const password = req.body.password;
+    await postingService.deletePosting(postingId, password);
+    return res.status(StatusCodes.OK).send({ message: "게시글 삭제 완료" });
+  } catch (err) {
+    console.log(err);
+    return res.status(err.statusCode || 500).json({ message: err.message });
+  }
+}
+
 module.exports = {
   createPosting,
   updatePosting,
+  deletePosting,
 };

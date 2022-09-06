@@ -20,4 +20,10 @@ async function updatePosting(postingId, postingInfo) {
   });
 }
 
-module.exports = { createPosting, readPostingById, updatePosting };
+async function deletePosting(postingId) {
+  return posting.destroy({
+    where: { id: postingId },
+  });
+}
+
+module.exports = { createPosting, readPostingById, updatePosting, deletePosting };
