@@ -3,8 +3,16 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const routes = require("./src/index");
+const db = require("./database/index");
 
 const app = express();
+
+db.sequelize
+  .sync({ alter: true })
+  .then(() => {
+    console.log("db 연결 성공");
+  })
+  .catch(console.error);
 
 app.use(cors());
 
