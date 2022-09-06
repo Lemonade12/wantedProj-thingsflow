@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const postingRepo = require("./postingRepository");
 
 const isValidPosting = async (req, res, next) => {
   const postingInfo = req.body;
@@ -14,7 +15,6 @@ const isValidPosting = async (req, res, next) => {
       .status(400)
       .json({ message: "비밀번호에 숫자는 반드시 1개 이상 포함 되어야 합니다." });
   }
-  req.body.password = await encryptPassword(postingInfo.password);
   next();
 };
 
@@ -27,12 +27,6 @@ function isIncludeNumber(password) {
   } else {
     return false;
   }
-}
-
-async function encryptPassword(password) {
-  const salt = await bcrypt.genSalt(10);
-  const result = await bcrypt.hash(password, salt);
-  return result;
 }
 
 module.exports = { isValidPosting };

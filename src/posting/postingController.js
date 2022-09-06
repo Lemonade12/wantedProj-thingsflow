@@ -8,12 +8,24 @@ async function createPosting(req, res) {
     return res.status(StatusCodes.OK).send({ message: "게시글 등록 완료" });
   } catch (err) {
     console.log(err);
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
-      error: "Internal Server Error",
-    });
+    return res.status(err.statusCode || 500).json({ message: err.message });
+  }
+}
+
+async function updatePosting(req, res) {
+  try {
+    const postingId = req.params.id;
+    const { title, content, password } = req.body;
+    const postingInfo = { title, content };
+    await postingService.updatePosting(postingId, postingInfo, password);
+    return res.status(StatusCodes.OK).send({ message: "게시글 수정 완료" });
+  } catch (err) {
+    console.log(err);
+    return res.status(err.statusCode || 500).json({ message: err.message });
   }
 }
 
 module.exports = {
   createPosting,
+  updatePosting,
 };

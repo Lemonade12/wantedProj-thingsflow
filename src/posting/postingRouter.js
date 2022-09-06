@@ -4,6 +4,7 @@ const postingMiddleware = require("./postingMiddleware");
 
 const router = express.Router();
 
-router.post("/api/posting", postingMiddleware.isValidPosting, postingController.createPosting);
+router.post("/posting", postingMiddleware.isValidPosting, postingController.createPosting);
+router.patch("/posting/:id", postingMiddleware.isValidPosting, postingController.updatePosting);
 
 module.exports = router;
