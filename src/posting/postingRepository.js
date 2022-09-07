@@ -29,7 +29,7 @@ async function deletePosting(postingId) {
 async function readPosting(page) {
   const offset = (page - 1) * 20;
   const data = await posting.findAll({
-    attributes: ["id", "title", "content", "createdAt"],
+    attributes: ["id", "title", "content", "weather", "createdAt", "updatedAt"],
     order: [["createdAt", "DESC"]],
     offset: offset,
     limit: 20,

@@ -1,8 +1,24 @@
 const postingRepo = require("./postingRepository");
 const bcrypt = require("bcrypt");
+const axios = require("axios");
 
 async function createPosting(postingInfo) {
   postingInfo.password = await encryptPassword(postingInfo.password);
+  const url_for_weather = "http://api.weatherapi.com/v1/current.json";
+  weatherInfo = await axios
+    .post(
+      url_for_weather,
+      {},
+      {
+        params: {
+          key: process.env.WEATHER_API_KEY,
+          q: "Seoul",
+        },
+      }
+    )
+    .then(function (response) {
+      postingInfo.weather = response.data.current.condition.text;
+    });
   postingRepo.createPosting(postingInfo);
 }
 
