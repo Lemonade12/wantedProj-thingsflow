@@ -3,7 +3,6 @@ const postingRepo = require("./postingRepository");
 
 const isValidPosting = async (req, res, next) => {
   const postingInfo = req.body;
-  console.log(postingInfo.title);
   if (postingInfo.title.length > 20) {
     return res.status(400).json({ message: "제목은 최대 20자 입니다." });
   } else if (postingInfo.content.length > 200) {
@@ -21,7 +20,6 @@ const isValidPosting = async (req, res, next) => {
 function isIncludeNumber(password) {
   var regex = /[^0-9]/g;
   var result = password.replace(regex, "");
-  console.log(result);
   if (result.length >= 1) {
     return true;
   } else {
