@@ -8,7 +8,7 @@ const db = require("./database/index");
 const app = express();
 
 db.sequelize
-  .sync({ alter: true })
+  .sync({ alter: true, force: true })
   .then(() => {
     console.log("db 연결 성공");
   })

@@ -17,6 +17,9 @@ module.exports = function (sequelize, DataTypes) {
       content: {
         type: DataTypes.STRING(400),
       },
+      weather: {
+        type: DataTypes.STRING(50),
+      },
     },
     {
       timestamps: true,
