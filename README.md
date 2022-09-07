@@ -15,22 +15,23 @@
 - 게시글은 제목(최대 20자)과 본문(최대 200자)으로 구성되며 이모지를 포함할 수 있습니다.
 - 게시글을 올릴때 사용자는 비밀번호(6자 이상, 숫자 1개 이상 포함)를 설정할 수 있습니다.
 - 비밀번호는 암호화하여 데이터베이스에 저장합니다.
+- Real-time Weather API를 이용하여 게시글을 업로드한 시점의 날씨 정보를 데이터베이스에 저장(추가 요구사항 2)
 
 ### 2. 게시글 UPDATE / DELETE
 - 게시글을 등록할때 등록했던 비밀번호와 일치하면 수정 및 삭제가 가능합니다.
 
 ### 3. 게시글 READ
 - 게시글을 최신 글 순서로 불러 옵니다.
-- 스크롤을 내릴 때 추가로 20개씩 로드 해줍니다.
+- 스크롤을 내릴 때 추가로 20개씩 로드 해줍니다.(추가 요구사항 1)
 
 ## 📌 DB Modeling
 
-- posts : 게시글 테이블(id, password, title, content, createdAt, updatedAt)
+- posts : 게시글 테이블(id, password, title, content, weather, createdAt, updatedAt)
 <br>
 
 ## 📌 API DOCS
 
-https://app.swaggerhub.com/apis-docs/ad105geppetto/POST-api/1.0.0#/
+
 <br><br>
 
 ## 📌 적용 기술
